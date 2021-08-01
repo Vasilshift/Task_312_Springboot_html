@@ -1,293 +1,282 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
-    <!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <!--        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+    <!--        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>-->
+
+    <title>Main page</title>
+
+    <!--    &lt;!&ndash; Latest compiled and minified CSS &ndash;&gt;-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!--    &lt;!&ndash; jQuery library &ndash;&gt;-->
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+
+    <!--    &lt;!&ndash; Popper JS &ndash;&gt;-->
+    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>-->
+
+    <!--    &lt;!&ndash; Latest compiled JavaScript &ndash;&gt;-->
+    <!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
 
 
+    <!--    /*<link rel="stylesheet" href="../css/style.css">*/-->
+    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>-->
 
-    <title>All users</title>
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
-    <header>
-        <p>Get user by username or id and show email</p>
-    </header>
 
-<!--    <div class="container-fluid">-->
+<!--<header class="container-fluid d-flex flex-row align-items-center justify-content-between p-3 bg-dark text-white"-->
+<!--        xmlns:sec="http://www.w3.org/1999/xhtml">-->
 
+<!--&lt;!&ndash;    <div><b sec:authentication="name"/> with roles:&ndash;&gt;-->
+<!--&lt;!&ndash;        <th:block th:each="role : ${#authentication.authorities}">&ndash;&gt;-->
+<!--&lt;!&ndash;            <span th:text="${role.getName()}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        </th:block></div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div><a class="text-light" th:href="@{/logout}">Logout</a></div>&ndash;&gt;-->
 
+<!--    <h1>admin panel </h1>-->
 
-<!--    </div>-->
-<!--    <div class="row-cols-auto">-->
-<!--        <div class="col-1">-->
-<!--                <h6>user email</h6>-->
-<!--        </div>-->
-<!--        <div class="col-1">-->
-<!--            <h6>with roles:</h6>-->
-<!--        </div>-->
-<!--        <div class="col-1">-->
-<!--            <h6>roles</h6>-->
-<!--        </div>-->
-<!--        <div class="col-1">-->
-<!--            <a href="/logout">logout</a>-->
-<!--        </div>-->
-<!--    </div>-->
+<!--</header>-->
 
-<!--    <div class="container">-->
-
-<!--        <div>-->
-<!--            <div class="content">-->
-<!--                <input type="radio" name="slider" checked id="home">-->
-<!--                <input type="radio" name="slider" id="blog">-->
-
-<!--                <div class="list">-->
-<!--                    <label for="home" class="home">-->
-<!--                        <span class="title">Admin</span>-->
-<!--                    </label>-->
-<!--                    <label for="blog" class="blog">-->
-<!--                        <span class="title">User</span>-->
-<!--                    </label>-->
-<!--&lt;!&ndash;                    <div class="slider"></div>&ndash;&gt;-->
-<!--                </div>-->
-<!--                <div class="content">-->
-<!--                    <div class="home text">-->
-
-
-
-<!--                    </div>-->
-<!--                    <div class="blog text">-->
-<!--                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias tempora, unde reprehenderit incidunt excepturi blanditiis ullam dignissimos provident quam? Fugit, enim! Architecto ad officiis dignissimos ex quae iusto amet pariatur, ea eius aut velit, tempora magnam hic autem maiores unde corrupti tenetur delectus! Voluptatum praesentium labore consectetur ea qui illum illo distinctio, sunt, ipsam rerum optio quibusdam cum a? Aut facilis non fuga molestiae voluptatem omnis reprehenderit, dignissimos commodi repellat sapiente natus ipsam, ipsa distinctio. Ducimus repudiandae fuga aliquid, numquam.</p>-->
-<!--                    </div>-->
-
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
-
-
-
-<div th:switch="${users}">
-    <h2 th:case="null">No users found!</h2>
-    <div th:case="*">
-        <h2>All users</h2>
-        <table border="1">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>username</th>
-                <th>lastname</th>
-                <th>age</th>
-                <th>email</th>
-                <th>role</th>
-                <th>edit</th>
-                <th>delete</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="user : ${users}">
-                <td th:text="${user.id}"></td>
-                <td th:text="${user.username}"></td>
-                <td th:text="${user.lastname}"></td>
-                <td th:text="${user.age}"></td>
-                <td th:text="${user.email}"></td>
-                <td th:text="${user.roles}"></td>
-                <td><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></td>
-                <td><a th:href="@{user-delete/{id}(id=${user.id})}">Delete</a></td>
-            </tr>
-            </tbody>
-        </table>
+<div class="container">
+    <div class="content">
+        <input type="radio" name="slider" checked id="home">
+        <input type="radio" name="slider" id="blog">
+        <div class="list">
+            <label for="home" class="home">
+                <span class="title">Admin</span>
+            </label>
+            <label for="blog" class="blog">
+                <span class="title">User</span>
+            </label>
+            <div class="slider"></div>
+        </div>
+        <div class="text-content">
+            <div class="home text">
+                <h2>Admin panel</h2>
+                <div class="container">
+                    <br>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#allusers">Users table</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#newuser">New user</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="allusers" class="container tab-pane active"><br>
+                            <h4>All users</h4>
+                            <div th:switch="${users}">
+                                <h2 th:case="null">No users found!</h2>
+                                <div th:case="*">
+                                    <table border="1">
+                                        <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>username</th>
+                                            <th>lastname</th>
+                                            <th>age</th>
+                                            <th>email</th>
+                                            <th>role</th>
+                                            <th>edit</th>
+                                            <th>delete</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="user : ${users}">
+                                            <td th:text="${user.id}"></td>
+                                            <td th:text="${user.username}"></td>
+                                            <td th:text="${user.lastname}"></td>
+                                            <td th:text="${user.age}"></td>
+                                            <td th:text="${user.email}"></td>
+                                            <td th:text="${user.roles}"></td>
+                                            <td><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></td>
+                                            <td><a th:href="@{user-delete/{id}(id=${user.id})}">Delete</a></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="newuser" class="container tab-pane fade"><br>
+                            <h4>Add new user</h4>
+                            <div class="row border bg-white pb-2">
+                                <div th:replace="/user"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="blog text">
+                <p>Lorem ipsum dolor sisimos commodi repellat sapiente natus ipsam, ipsa distinctio. Ducimus repudiandae fuga aliquid, numquam.</p>
+            </div>
+        </div>
     </div>
 </div>
 
-
-
-
-
-
-
-<div>
-
-    <p><a href="/user-create">Create user</a></p>
-</div>
-
-
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
 
-<!--<style>-->
-<!--    body {-->
-<!--        background: #ccc;-->
-<!--        font-family: 'Roboto', sans-serif;-->
-<!--    }-->
-<!--    .mytabs {-->
-<!--        display: flex;-->
-<!--        flex-wrap: wrap;-->
-<!--        max-width: 600px;-->
-<!--        margin: 50px auto;-->
-<!--        padding: 25px;-->
-<!--    }-->
-<!--    .mytabs input[type="radio"] {-->
-<!--        display: none;-->
-<!--    }-->
-<!--    .mytabs label {-->
-<!--        padding: 25px;-->
-<!--        background: #e2e2e2;-->
-<!--        font-weight: bold;-->
-<!--    }-->
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    body{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #dad3f8;
+    }
+    ::selection{
+        background: #99ada7;
+        color: #fff;
+    }
+    .container{
+        max-width: 100%;
+        width: 100%;
+        padding: 10px 10px 10px 10px;
+        background: #fff;
+        margin: 0 0;
+        border-radius: 0px;
+        /*box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);*/
+    }
+    .container .topic{
+        font-size: 30px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+    .content{
+        display: flex;
+        /*align-items: center;*/
+        justify-content: space-between;
+    }
+    .content .list{
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        margin-right: 50px;
+        position: relative;
+    }
+    .content .list label{
+        height: 40px;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 50px;
+        cursor: pointer;
+        padding-left: 15px;
+        transition: all 0.5s ease;
+        color: #333;
+        z-index: 12;
+    }
+    #home:checked ~ .list label.home,
+    #blog:checked ~ .list label.blog,
+    #help:checked ~ .list label.help,
+    #code:checked ~ .list label.code,
+    #about:checked ~ .list label.about{
+        color: #fff;
+    }
+    .content .list label:hover{
+        color: #3e22a7;
+    }
+    .content .slider{
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 50px;
+        width: 100%;
+        border-radius: 1px;
+        background: rgba(69, 26, 232, 0.82);
+        transition: all 0.4s ease;
+    }
+    /*#home:checked ~ .list .slider{*/
+    /*    top: 0;*/
+    /*}*/
+    /*#blog:checked ~ .list .slider{*/
+    /*    top: 60px;*/
+    /*}*/
+    /*#help:checked ~ .list .slider{*/
+    /*    top: 120px;*/
+    /*}*/
+    /*#code:checked ~ .list .slider{*/
+    /*    top: 180px;*/
+    /*}*/
+    /*#about:checked ~ .list .slider{*/
+    /*    top: 240px;*/
+    /*}*/
+    .content .text-content{
+        width: 80%;
+        height: 100%;
+    }
+    .content .text{
+        display: none;
+    }
+    .content .text .title{
+        font-size: 25px;
+        margin-bottom: 10px;
+        font-weight: 500;
+    }
+    .content .text p{
+        text-align: justify;
+    }
+    .content .text-content .home{
+        display: block;
+    }
+    #home:checked ~ .text-content .home,
+    #blog:checked ~ .text-content .blog,
+    #help:checked ~ .text-content .help,
+    #code:checked ~ .text-content .code,
+    #about:checked ~ .text-content .about{
+        display: block;
+    }
+    #blog:checked ~ .text-content .home,
+    #help:checked ~ .text-content .home,
+    #code:checked ~ .text-content .home,
+    #about:checked ~ .text-content .home{
+        display: none;
+    }
+    .content input{
+        display: none;
+    }
+    .content .list1{
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        margin-right: 50px;
+        position: relative;
+    }
 
-<!--    .mytabs .tab {-->
-<!--        width: 100%;-->
-<!--        padding: 20px;-->
-<!--        background: #fff;-->
-<!--        order: 1;-->
-<!--        display: none;-->
-<!--    }-->
-<!--    .mytabs .tab h2 {-->
-<!--        font-size: 3em;-->
-<!--    }-->
+    .content .list label1{
+        height: 40px;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 50px;
+        cursor: pointer;
+        padding-left: 15px;
+        transition: all 0.5s ease;
+        color: #333;
+        /*z-index: 12;*/
+    }
 
-<!--    .mytabs input[type='radio']:checked + label + .tab {-->
-<!--        display: block;-->
-<!--    }-->
 
-<!--    .mytabs input[type="radio"]:checked + label {-->
-<!--        background: #fff;-->
-<!--    }-->
-<!--</style>-->
+</style>
 
-<!--<style>-->
-<!--    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');-->
-<!--    * {-->
-<!--        margin: 0;-->
-<!--        padding: 0;-->
-<!--        box-sizing: border-box;-->
-<!--        font-family: 'Poppins', sans-serif;-->
-<!--    }-->
-<!--    body{-->
-<!--        /*height: 100%;*/-->
-<!--        display: flex;-->
-<!--        align-items: center;-->
-<!--        justify-content: center;-->
-<!--        background: #dad3f8;-->
-<!--    }-->
-<!--    ::selection{-->
-<!--        background: #6d50e2;-->
-<!--        color: #fff;-->
-<!--    }-->
-<!--    .container{-->
-<!--        /*max-width: 1440px;*/-->
-<!--        /*width: 100%;*/-->
-<!--        padding: 40px 50px  40px  40px;-->
-<!--        background: #fff;-->
-<!--        margin: 0 20px;-->
-<!--        border-radius: 1px;-->
-<!--        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);-->
-<!--    }-->
-<!--    .container .topic{-->
-<!--        font-size: 30px;-->
-<!--        font-weight: 500;-->
-<!--        margin-bottom: 20px;-->
-<!--    }-->
-<!--    .content{-->
-<!--        display: flex;-->
-<!--        /*align-items: center;*/-->
-<!--        justify-content: space-between;-->
-<!--    }-->
-<!--    .content .list{-->
-<!--        display: flex;-->
-<!--        flex-direction: column;-->
-<!--        width: 20%;-->
-<!--        margin-right: 50px;-->
-<!--        position: relative;-->
-<!--    }-->
-<!--    .content .list label{-->
-<!--        height: 40px;-->
-<!--        font-size: 22px;-->
-<!--        font-weight: 500;-->
-<!--        line-height: 60px;-->
-<!--        cursor: pointer;-->
-<!--        padding-left: 15px;-->
-<!--        transition: all 0.5s ease;-->
-<!--        color: #333;-->
-<!--        z-index: 12;-->
-<!--    }-->
-<!--    #home:checked ~ .list label.home,-->
-<!--    #blog:checked ~ .list label.blog,-->
-<!--    #help:checked ~ .list label.help,-->
-<!--    #code:checked ~ .list label.code,-->
-<!--    #about:checked ~ .list label.about{-->
-<!--        color: #fff;-->
-<!--    }-->
-<!--    .content .list label:hover{-->
-<!--        color: #6d50e2;-->
-<!--    }-->
-<!--    .content .slider{-->
-<!--        position: absolute;-->
-<!--        left: 0;-->
-<!--        top: 0;-->
-<!--        height: 60px;-->
-<!--        width: 100%;-->
-<!--        border-radius: 12px;-->
-<!--        background: #6d50e2;-->
-<!--        transition: all 0.4s ease;-->
-<!--    }-->
-<!--    /*#home:checked ~ .list .slider{*/-->
-<!--    /*    top: 0;*/-->
-<!--    /*}*/-->
-<!--    /*#blog:checked ~ .list .slider{*/-->
-<!--    /*    top: 60px;*/-->
-<!--    /*}*/-->
-<!--    /*#help:checked ~ .list .slider{*/-->
-<!--    /*    top: 120px;*/-->
-<!--    /*}*/-->
-<!--    /*#code:checked ~ .list .slider{*/-->
-<!--    /*    top: 180px;*/-->
-<!--    /*}*/-->
-<!--    /*#about:checked ~ .list .slider{*/-->
-<!--    /*    top: 240px;*/-->
-<!--    /*}*/-->
-<!--    .content .text-content{-->
-<!--        width: 80%;-->
-<!--        height: 100%;-->
-<!--    }-->
-<!--    .content .text{-->
-<!--        display: none;-->
-<!--    }-->
-<!--    .content .text .title{-->
-<!--        font-size: 25px;-->
-<!--        margin-bottom: 10px;-->
-<!--        font-weight: 500;-->
-<!--    }-->
-<!--    .content .text p{-->
-<!--        text-align: justify;-->
-<!--    }-->
-<!--    .content .text-content .home{-->
-<!--        display: block;-->
-<!--    }-->
-<!--    #home:checked ~ .text-content .home,-->
-<!--    #blog:checked ~ .text-content .blog,-->
-<!--    #help:checked ~ .text-content .help,-->
-<!--    #code:checked ~ .text-content .code,-->
-<!--    #about:checked ~ .text-content .about{-->
-<!--        display: block;-->
-<!--    }-->
-<!--    #blog:checked ~ .text-content .home,-->
-<!--    #help:checked ~ .text-content .home,-->
-<!--    #code:checked ~ .text-content .home,-->
-<!--    #about:checked ~ .text-content .home{-->
-<!--        display: none;-->
-<!--    }-->
-<!--    .content input{-->
-<!--        display: none;-->
-<!--    }-->
 
-<!--</style>-->
