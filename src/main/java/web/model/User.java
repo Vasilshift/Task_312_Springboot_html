@@ -24,15 +24,28 @@ public class User implements UserDetails {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "lastname")
+    private String lastname;
+
+    @Column(name = "age")
+    private String age;
+
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "password")
     private String password;
 
+    @Column(name = "role")
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    public User(Long id, String username, String password, Set<Role> roles) {
+    public User(Long id, String username, String lastname, String age, String email, String password, Set<Role> roles) {
         this.id = id;
         this.username = username;
+        this.lastname = lastname;
+        this.age = age;
+        this.email = email;
         this.password = password;
         this.roles = roles;
     }
@@ -45,6 +58,7 @@ public class User implements UserDetails {
         this.id = id;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
@@ -53,6 +67,31 @@ public class User implements UserDetails {
         this.username = username;
     }
 
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
     public String getPassword() {
         return password;
     }
