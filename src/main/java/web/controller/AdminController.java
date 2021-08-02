@@ -2,6 +2,8 @@ package web.controller;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
@@ -10,9 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
+@ControllerAdvice
 public class AdminController {
 
     private final UserService userService;
@@ -22,6 +27,29 @@ public class AdminController {
         this.userService = userService;
 
     }
+
+    private Map<Long, User> userMap = new HashMap<>();
+
+    @RequestMapping(value = "/addusertest", method = {RequestMethod.GET, RequestMethod.PUT})
+    public String submit(
+            @ModelAttribute("user") User user,
+            BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+            return "error";
+        }
+        model.addAttribute("username", user.getUsername());
+//        model.addAttribute("password", user.getPassword());
+//        model.addAttribute("lastname", user.getLastname());
+//        model.addAttribute("age", user.getAge());
+//        model.addAttribute("email", user.getEmail());
+//        model.addAttribute("roles", user.getRoles());
+
+        userMap.put(user.getId(), user);
+
+        return "testpage";
+    }
+
+
 
     @GetMapping(value = "/")
     public String printWelcome(Model model) {

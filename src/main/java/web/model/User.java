@@ -7,11 +7,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import web.service.UserService;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 import java.util.Set;
 import java.util.Collection;
 
 @Entity
+@XmlRootElement
 @Table(name = "users")
 public class User implements UserDetails {
 
