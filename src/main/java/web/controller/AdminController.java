@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -99,7 +100,7 @@ public class AdminController {
     }
 
     @PostMapping("/user-update")
-    public String updateUser(User user,
+    public String updateUser(@ModelAttribute("user") User user,
                              @RequestParam(required = false, name = "roleAdmin") String roleAdmin){
         if (roleAdmin != null) {
             userService.saveUser(userService.addRoleToUser(user, userService.getRoleByRolename("ROLE_ADMIN")));
