@@ -101,7 +101,7 @@
                                     <td th:text="${user.email}"/>
                                     <td>
                                         <th:block th:each="role : ${user.getRoles()}">
-                                            &nbsp;<span th:text="${role.role}"/>
+                                            &nbsp;<span th:text="${role.name}"/>
                                         </th:block>
                                     </td>
                                     <td>
@@ -143,10 +143,12 @@
                                                 <label for="roles">Role</label>
                                                 <select multiple class="form-control" id="roles" name="roles">
                                                     <option th:each="role : ${allRoles}"
-                                                            th:selected="*{hasRole('__${role.id}__')}" th:text="${role.role}"
-                                                            th:value="${role.id}">
+                                                            th:text="${role.name}"
+                                                            //th:value="${role.id}">
                                                 </select>
                                             </div>
+
+
                                             <input type="submit" value="Create User">
                                             </div>
                                     </form>
@@ -159,7 +161,41 @@
                 </div>
             </div>
             <div class="blog text">
-                <p>Lorem ipsum dolor sisimos commodi repellat sapiente natus ipsam, ipsa distinctio. Ducimus repudiandae fuga aliquid, numquam.</p>
+                <h2>User information page</h2>
+                <table class="table table-borderless m-3">
+                    <thead>
+                    <tr class="border-top">
+                        <th scope="col">ID</th>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Roles</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="border-top bg-light" object="${user}">
+                        <td text="*{user.getId()}"/>
+                        <td text="*{username}"/>
+                        <td text="*{lastname}"/>
+                        <td text="*{age}"/>
+                        <td text="*{email}"/>
+<!--                        <td text="*{roles}"/>-->
+
+
+
+
+<!--                            <block each="roles : *{getRoles()}">-->
+<!--                                <span text="${roles.role}"/>-->
+<!--                            </block>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+
+
+                    </tr>
+                    </tbody>
+
+                </table>
             </div>
         </div>
     </div>
@@ -227,13 +263,10 @@
         color: #333;
         z-index: 12;
     }
-    #home:checked ~ .list label.home,
-    #blog:checked ~ .list label.blog,
-    #help:checked ~ .list label.help,
-    #code:checked ~ .list label.code,
-    #about:checked ~ .list label.about{
-        color: #fff;
-    }
+    /*#home:checked ~ .list label.home,*/
+    /*#blog:checked ~ .list label.blog {*/
+    /*    color: #fff;*/
+    /*}*/
     .content .list label:hover{
         color: #3e22a7;
     }
@@ -281,10 +314,7 @@
         display: block;
     }
     #home:checked ~ .text-content .home,
-    #blog:checked ~ .text-content .blog,
-    #help:checked ~ .text-content .help,
-    #code:checked ~ .text-content .code,
-    #about:checked ~ .text-content .about{
+    #blog:checked ~ .text-content .blog {
         display: block;
     }
     #blog:checked ~ .text-content .home,

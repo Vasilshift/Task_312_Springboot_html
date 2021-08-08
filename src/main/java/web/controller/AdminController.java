@@ -1,32 +1,29 @@
 package web.controller;
 
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import web.model.Role;
 import web.model.User;
+import web.service.RoleService;
 import web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @ControllerAdvice
 public class AdminController {
 
     private final UserService userService;
+    private final RoleService roleService;
 
     @Autowired
-    public AdminController(UserService userService) {
+    public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
-
+        this.roleService = roleService;
     }
 
     private Map<Long, User> userMap = new HashMap<>();
@@ -65,7 +62,9 @@ public class AdminController {
     @GetMapping("/admin")
     public String findAll(Model model){
         List<User> users = userService.findAll();
+        List<Role> roles = roleService.findAllRoles();
         model.addAttribute("users", users);
+        model.addAttribute("allRoles", roles);
         return "user-list";
     }
 
@@ -76,13 +75,13 @@ public class AdminController {
 
     @PostMapping("/user-create")
     public String createUser(@ModelAttribute("user") User user,
-                             @RequestParam(required = false, name = "roleAdmin") String roleAdmin
+                             @RequestParam(required = false, name = "roleView") String[] roleView
                             ) {
-        if (roleAdmin != null) {
-            userService.saveUser(userService.addRoleToUser(user, userService.getRoleByRolename("ROLE_ADMIN")));
-        } else {
-            userService.saveUser(userService.addRoleToUser(user, userService.getRoleByRolename("ROLE_USER")));
-        }
+
+        //model.addAttribute("allRoles", appService.findAllRoles());
+        userService.addRolesToUser(user, roleView);
+        userService.saveUser(user);
+
         return "redirect:/admin";
     }
 
@@ -101,14 +100,11 @@ public class AdminController {
 
     @PostMapping("/user-update")
     public String updateUser(@ModelAttribute("user") User user,
-                             @RequestParam(required = false, name = "roleAdmin") String roleAdmin){
-        if (roleAdmin != null) {
-            userService.saveUser(userService.addRoleToUser(user, userService.getRoleByRolename("ROLE_ADMIN")));
-        } else {
-            userService.saveUser(userService.addRoleToUser(user, userService.getRoleByRolename("ROLE_USER")));
-        }
+                             @RequestParam(required = false, name = "roleView") String[] roleView){
 
-        //userService.saveUser(user);
+        user.setRoles(roleService.updateRoles(roleView));
+        userService.saveUser(user);
+
         return "redirect:/admin";
     }
 }

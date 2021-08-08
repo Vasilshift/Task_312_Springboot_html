@@ -4,31 +4,44 @@
 <title>Create user</title>
 </head>
 <body>
-<form action="#" th:action="@{/user-update}" th:object="${user}" method="post">
-    <label for="id">ID</label>
-    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
-    <br/>
-    <label for="firstName">First name</label>
-    <input type="text" th:field="*{username}" id="firstName" placeholder="username">
-    <br/>
-    <label for="lastName">Last name</label>
-    <input type="text" th:field="*{password}" id="lastName" placeholder="password">
-    <br/>
+    <table>
+        <thead>
+            <tr class="border-top">
+                <th scope="col">ID</th>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">Age</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Roles</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
 
-    <label>
-        <input type="checkbox" name="roleAdmin"
-               th:value="ROLE_ADMIN"
-               th:text="Admin">
-    </label>
+        <tbody>
+            <tr th:each="user, rowStat : ${user}"
+                th:classappend="${rowStat.count % 2 != 0 ? 'table-secondary' : 'table-light'}">
+                <td th:text="${user.id}"/>
+                <td th:text="${user.username}"/>
+                <td th:text="${user.lastname}"/>
+                <td th:text="${user.age}"/>
+                <td th:text="${user.email}"/>
+                <td>
+                    <th:block each="role : ${user.getRoles()}">
+                        &nbsp;<span text="${role.role}"/>
+                    </th:block>
+                </td>
+                <td>
+                    <a th:href="@{/admin/{id}/profile(id=${user.id})}"
+                       class="btn btn-sm btn-info edit-button">Edit</a>
+                </td>
+                <td>
+                    <a th:href="@{/admin/{id}/profile(id=${user.id})}"
+                       class="btn btn-sm btn-danger delete-button">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-    <label>
-        <input type="checkbox"
-               name="roleUser"
-               th:value="ROLE_USER"
-               th:text="User">
-    </label>
-
-    <input type="submit" value="Update User">
-</form>
 </body>
 </html>

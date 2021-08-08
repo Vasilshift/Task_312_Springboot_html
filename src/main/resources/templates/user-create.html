@@ -18,6 +18,19 @@
         <!--    <label for="password">Password</label>-->
             <input type="text" path="*{password}" id="password" placeholder="password">
 
+<!--            <div>-->
+<!--                <label for="newRoles">Role</label>-->
+<!--                <select multiple class="form-control" id="newRoles" name="roles">-->
+<!--                    <option th:each="role : ${allRoles}"-->
+<!--                            th:selected="*{hasRole('__${role.id}__')}" th:text="${role.name}"-->
+<!--                            th:value="${role.id}">-->
+<!--                </select>-->
+<!--            </div>-->
+
+
+
+
+
         <!--    <label for="lastname">Last name</label>-->
         <!--    <input type="text" path="*{lastname}" id="lastname" placeholder="Last name">-->
 
@@ -29,16 +42,16 @@
 
 
             <label>
-                <input type="checkbox"
-                       name="roleAdmin"
-                       th:value="ROLE_ADMIN"
+                <input type="text"
+                       name="roleView"
+                       th:value = "ROLE_ADMIN"
                        th:text="Admin">
             </label>
 
             <label>
-                <input type="checkbox"
-                       name="roleUser"
-                       th:value="ROLE_USER"
+                <input type="text"
+                       name="roleView"
+                       th:value = "ROLE_USER"
                        th:text="User">
             </label>
 

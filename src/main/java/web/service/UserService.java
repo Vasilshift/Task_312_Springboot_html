@@ -40,20 +40,25 @@ public class UserService  {
     }
 
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
-
         return userRepository.findByUsername(username);
-
     }
 
-    public User addRoleToUser(User user, Role role) {
-        Set<Role> roles = new HashSet<>();
-        roles.add(role);
-        user.setRoles(roles);
-        return user;
+    public void addRolesToUser(User user, String[] roleView) {
+        Set<Role> roleList = new HashSet<>();
+        for (String role : roleView) {
+            if (role.equals("ROLE_ADMIN")) {
+                roleList.add(roleRepository.findRoleByName("ROLE_ADMIN"));
+            } else if (role.equals("ROLE_USER")) {
+                roleList.add(roleRepository.findRoleByName("ROLE_USER"));
+            }
+        }
+        user.setRoles(roleList);
     }
 
-    public Role getRoleByRolename(String rolename) {
-        return roleRepository.findByRole(rolename);
-    }
+
+
+
+
+
 
 }
