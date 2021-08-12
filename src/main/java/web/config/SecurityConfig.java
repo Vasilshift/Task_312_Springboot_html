@@ -31,12 +31,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.formLogin()
                 .successHandler(new LoginSuccessHandler())
-                .usernameParameter("username")
-                .passwordParameter("password")
+                // указываем action с формы логина
+                .loginProcessingUrl("/login")
+                .usernameParameter("j_username")
+                .passwordParameter("j_password")
                 .permitAll();
         http
                 .authorizeRequests()
-                .antMatchers("/admin").access("hasAnyRole('ROLE_ADMIN')")
+                .antMatchers("/admin/**").access("hasAnyRole('ADMIN')")
                 .antMatchers("/user").access("hasAnyRole('USER','ADMIN')");
 
         http.logout()
@@ -45,31 +47,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login");
     }
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder(12);
-//    }
-//
-//    @Bean
-//    public DaoAuthenticationProvider authenticationProvider() {
-//        final DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-//        authProvider.setUserDetailsService(userDetailsService);
-//        authProvider.setPasswordEncoder(passwordEncoder());
-//        return authProvider;
-//    }
-//
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsService);
-//    }
-
-        @Bean
+    @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder(12);
     }
 
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        final DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
 
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService);
+    }
 
+//        @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return NoOpPasswordEncoder.getInstance();
+//    }
 
 }
 
