@@ -8,9 +8,7 @@ import web.model.User;
 import java.util.Set;
 
 public interface RoleRepository extends JpaRepository<Role, Long>  {
+
     Role findRoleByName(String name);
 
-    //Set<Role> findAllRoles(String[] roles);
-
-    //Iterable<Role> findAllBy
 }

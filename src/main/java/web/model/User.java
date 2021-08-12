@@ -7,7 +7,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import web.service.UserService;
-
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
@@ -88,6 +87,5 @@ public class User implements UserDetails {
         String role = roles.stream().map(Role::getName).map(t -> t.toString().replace("ROLE_", "")).collect(Collectors.joining(" "));
         return role;
     }
-
 
 }

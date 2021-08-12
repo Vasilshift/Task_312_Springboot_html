@@ -4,10 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import javax.persistence.*;
-import java.security.Permission;
 import java.util.*;
 
 @EqualsAndHashCode(of = "name")

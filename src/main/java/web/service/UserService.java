@@ -55,10 +55,4 @@ public class UserService  {
         user.setRoles(roleList);
     }
 
-
-
-
-
-
-
 }
