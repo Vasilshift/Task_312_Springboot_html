@@ -14,7 +14,7 @@ import org.springframework.ui.Model;
 import java.util.*;
 
 @Controller
-@ControllerAdvice
+@RequestMapping("/admin")
 public class AdminController {
 
     private final UserService userService;
@@ -26,40 +26,7 @@ public class AdminController {
         this.roleService = roleService;
     }
 
-    private Map<Long, User> userMap = new HashMap<>();
-
-    @RequestMapping(value = "/addusertest", method = {RequestMethod.GET, RequestMethod.PUT})
-    public String submit(
-            @ModelAttribute("user") User user,
-            BindingResult result, ModelMap model) {
-        if (result.hasErrors()) {
-            return "error";
-        }
-        model.addAttribute("username", user.getUsername());
-//        model.addAttribute("password", user.getPassword());
-//        model.addAttribute("lastname", user.getLastname());
-//        model.addAttribute("age", user.getAge());
-//        model.addAttribute("email", user.getEmail());
-//        model.addAttribute("roles", user.getRoles());
-
-        userMap.put(user.getId(), user);
-
-        return "testpage";
-    }
-
-
-
-    @GetMapping(value = "/")
-    public String printWelcome(Model model) {
-        List<String> messages = new ArrayList<>();
-        messages.add("Hello!");
-        messages.add("I'm Spring MVC application");
-        messages.add("5.2.0 version by sep'19 ");
-        model.addAttribute("messages", messages);
-        return "index";
-    }
-
-    @GetMapping("/admin")
+    @GetMapping()
     public String findAll(Model model){
         List<User> users = userService.findAll();
         List<Role> roles = roleService.findAllRoles();

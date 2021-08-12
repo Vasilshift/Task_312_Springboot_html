@@ -10,9 +10,11 @@ import web.service.UserService;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -80,4 +82,12 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public String getNameRole(){
+        ArrayList<Role> roles = new ArrayList<>(getRoles());
+        String role = roles.stream().map(Role::getName).map(t -> t.toString().replace("ROLE_", "")).collect(Collectors.joining(" "));
+        return role;
+    }
+
+
 }
