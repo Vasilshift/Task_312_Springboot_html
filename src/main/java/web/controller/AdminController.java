@@ -44,11 +44,9 @@ public class AdminController {
     public String createUser(@ModelAttribute("user") User user,
                              @RequestParam(required = false, name = "roleView") String[] roleView
                             ) {
-
         //model.addAttribute("allRoles", appService.findAllRoles());
         userService.addRolesToUser(user, roleView);
         userService.saveUser(user);
-
         return "redirect:/admin";
     }
 
@@ -68,10 +66,8 @@ public class AdminController {
     @PostMapping("/user-update")
     public String updateUser(@ModelAttribute("user") User user,
                              @RequestParam(required = false, name = "roleView") String[] roleView){
-
         user.setRoles(roleService.updateRoles(roleView));
         userService.saveUser(user);
-
         return "redirect:/admin";
     }
 }
