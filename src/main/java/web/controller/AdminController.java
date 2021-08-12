@@ -50,11 +50,19 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("user-delete/{id}")
+    @PostMapping("/user-delete/{id}")
     public String deleteUser(@PathVariable("id") Long id){
         userService.deleteById(id);
         return "redirect:/admin";
     }
+
+    @GetMapping("/user-delete/{id}")
+    public String deleteUserForm(@PathVariable("id") Long id, Model model) {
+        User user = userService.findById(id);
+        model.addAttribute("user", user);
+        return "user-delete-form";
+    }
+
 
     @GetMapping("/user-update/{id}")
     public String updateUserForm(@PathVariable("id") Long id, Model model){
