@@ -23,6 +23,7 @@ public class UserController {
     public String userPage(Model model, Principal principal) {
         User user = userService.loadUserByUsername(principal.getName());
         model.addAttribute("user", user);
+        model.addAttribute("UserCurrent", user.getCurrentUser());
         return "user-info";
     }
 }

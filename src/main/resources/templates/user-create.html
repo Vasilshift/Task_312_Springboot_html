@@ -67,21 +67,17 @@
                                     <label for="exampleInputPassword1">Password</label>
                                     <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Enter password">
                                 </div>
-                                <div class="form-group">
-                                    <label>
-                                        <input type="checkbox"
-                                               name="roleView"
-                                               th:value = "ROLE_ADMIN"
-                                               th:text="Admin">
-                                    </label>
 
-                                    <label>
-                                        <input type="checkbox"
-                                               name="roleView"
-                                               th:value = "ROLE_USER"
-                                               th:text="User">
-                                    </label>
-                                </div>
+                                            <div>
+                                                <label for="roles">User roles</label>
+                                                <select multiple size="2" id="roles" name="roles">
+                                                    <option th:each="role : ${allRoles}"
+                                                            th:text="${role.name}"
+                                                            th:value="${role.id}">
+                                                    </option>
+                                                </select>
+                                            </div>
+
                                 <br/>
                                 <div class="form-group">
                                     <input type="submit" class="form-control" value="Add new user" style="background-color: #027cff; color: white;">

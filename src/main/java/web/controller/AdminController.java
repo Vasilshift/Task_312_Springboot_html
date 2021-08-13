@@ -8,6 +8,8 @@ import web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
+import javax.validation.Valid;
 import java.util.*;
 
 @Controller
@@ -33,16 +35,17 @@ public class AdminController {
     }
 
     @GetMapping("/user-create")
-    public String createUserForm(User user){
+    public String createUserForm(@ModelAttribute("user") User user, Model model ) {
+
+        model.addAttribute("user", user);
+        model.addAttribute("allRoles", roleService.findAllRoles());
         return "user-create";
     }
 
     @PostMapping("/user-create")
-    public String createUser(@ModelAttribute("user") User user,
-                             @RequestParam(required = false, name = "roleView") String[] roleView
-                            ) {
-        //model.addAttribute("allRoles", appService.findAllRoles());
-        userService.addRolesToUser(user, roleView);
+    public String createUser(@ModelAttribute("user") User user, Model model ) {
+
+        model.addAttribute("allRoles", roleService.findAllRoles());
         userService.saveUser(user);
         return "redirect:/admin";
     }
@@ -64,14 +67,16 @@ public class AdminController {
     @GetMapping("/user-update/{id}")
     public String updateUserForm(@PathVariable("id") Long id, Model model){
         User user = userService.findById(id);
+        model.addAttribute("allRoles", roleService.findAllRoles());
         model.addAttribute("user", user);
         return "user-update";
     }
 
     @PostMapping("/user-update")
-    public String updateUser(@ModelAttribute("user") User user,
-                             @RequestParam(required = false, name = "roleView") String[] roleView){
-        user.setRoles(roleService.updateRoles(roleView));
+    public String updateUser(@ModelAttribute("user") User user, Model model) {
+
+        //user.setRoles(roleService.updateRoles(roleView));
+        model.addAttribute("allRoles", roleService.findAllRoles());
         userService.saveUser(user);
         return "redirect:/admin";
     }

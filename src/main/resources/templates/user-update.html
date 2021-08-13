@@ -48,18 +48,30 @@
 
                     <label for="password">Enter password: </label>
                     <input class="form-control" type="text" name="password" id="password">
-                        <label>
-                            <input type="checkbox"
-                                   name="roleView"
-                                   th:value = "ROLE_ADMIN"
-                                   th:text="Admin">
-                        </label>
-                        <label>
-                            <input type="checkbox"
-                                   name="roleView"
-                                   th:value = "ROLE_USER"
-                                   th:text="User">
-                        </label>
+
+                    <label for="roles">User roles</label>
+                        <select multiple size="2" id="roles" name="roles">
+                        <option th:each="role : ${allRoles}"
+                            th:text="${role.name}"
+                                  th:value="${role.id}">
+                        </option>
+                        </select>
+
+
+
+
+<!--                        <label>-->
+<!--                            <input type="checkbox"-->
+<!--                                   name="roleView"-->
+<!--                                   th:value = "ROLE_ADMIN"-->
+<!--                                   th:text="Admin">-->
+<!--                        </label>-->
+<!--                        <label>-->
+<!--                            <input type="checkbox"-->
+<!--                                   name="roleView"-->
+<!--                                   th:value = "ROLE_USER"-->
+<!--                                   th:text="User">-->
+<!--                        </label>-->
                 </div>
             </div>
             <br>

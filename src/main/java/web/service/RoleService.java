@@ -36,4 +36,9 @@ public class RoleService {
         return roleRepository.findAll();
     }
 
+
+    public Role findRoleByName(String name) {
+        return roleRepository.findRoleByName(name);
+
+    }
 }
