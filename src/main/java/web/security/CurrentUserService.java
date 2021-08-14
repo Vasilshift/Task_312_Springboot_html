@@ -6,26 +6,30 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import web.model.Role;
+import web.model.User;
 import web.repository.UserRepository;
 import web.service.UserService;
 
 @Service
-public class MyUserDetailsService implements UserDetailsService {
-
-    private final UserRepository userRepository;
-    private final UserService userService;
+public class CurrentUserService implements UserDetailsService {
 
     @Autowired
-    public MyUserDetailsService(UserRepository userRepository, UserService userService) {
-        this.userRepository = userRepository;
-        this.userService = userService;
-    }
+    private UserRepository userRepository;
+
+//    public CurrentUserService(UserRepository userRepository) {
+//        this.userRepository = userRepository;
+//    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userService.loadUserByUsername(username);
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+            return new CurrentUser(user);
+        }
+
+        throw new UsernameNotFoundException("Could not find user with username:" + username);
+
+        //return userService.loadUserByUsername(username);
     }
-
-
 
 }

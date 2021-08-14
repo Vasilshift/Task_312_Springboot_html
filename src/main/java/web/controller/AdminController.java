@@ -1,15 +1,20 @@
 package web.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
 import web.model.Role;
 import web.model.User;
+import web.security.CurrentUser;
 import web.service.RoleService;
 import web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-import javax.validation.Valid;
 import java.util.*;
 
 @Controller
@@ -18,11 +23,13 @@ public class AdminController {
 
     private final UserService userService;
     private final RoleService roleService;
+    private final BCryptPasswordEncoder bcryptpasswordEncoder;
 
     @Autowired
-    public AdminController(UserService userService, RoleService roleService) {
+    public AdminController(UserService userService, RoleService roleService, BCryptPasswordEncoder bcryptpasswordEncoder) {
         this.userService = userService;
         this.roleService = roleService;
+        this.bcryptpasswordEncoder = bcryptpasswordEncoder;
     }
 
     @GetMapping()
@@ -31,22 +38,25 @@ public class AdminController {
         List<Role> roles = roleService.findAllRoles();
         model.addAttribute("users", users);
         model.addAttribute("allRoles", roles);
+//        model.addAttribute("user", userService.getCurrentUser());
+//
+//        System.out.println(userService.getCurrentUser());
         return "user-list";
     }
 
     @GetMapping("/user-create")
     public String createUserForm(@ModelAttribute("user") User user, Model model ) {
-
         model.addAttribute("user", user);
         model.addAttribute("allRoles", roleService.findAllRoles());
         return "user-create";
     }
 
     @PostMapping("/user-create")
-    public String createUser(@ModelAttribute("user") User user, Model model ) {
-
+    public String createUser(@ModelAttribute("user") User user, String password, Model model ) {
         model.addAttribute("allRoles", roleService.findAllRoles());
+        user.setPassword(bcryptpasswordEncoder.encode(password));
         userService.saveUser(user);
+        System.out.println(password);
         return "redirect:/admin";
     }
 
@@ -62,8 +72,7 @@ public class AdminController {
         model.addAttribute("user", user);
         return "user-delete-form";
     }
-
-
+    
     @GetMapping("/user-update/{id}")
     public String updateUserForm(@PathVariable("id") Long id, Model model){
         User user = userService.findById(id);
@@ -74,10 +83,18 @@ public class AdminController {
 
     @PostMapping("/user-update")
     public String updateUser(@ModelAttribute("user") User user, Model model) {
-
-        //user.setRoles(roleService.updateRoles(roleView));
         model.addAttribute("allRoles", roleService.findAllRoles());
+        user.setPassword(bcryptpasswordEncoder.encode(user.getPassword()));
         userService.saveUser(user);
         return "redirect:/admin";
     }
+
+    @GetMapping("/secured")
+    public String secured(@AuthenticationPrincipal CurrentUser loggedUser, Model model) {
+        String username = loggedUser.getUsername();
+        User user = userService.loadUserByUsername(username);
+        model.addAttribute("user", user);
+        return "admin/header";
+    }
+
 }

@@ -1,14 +1,24 @@
-<div th:fragment="name-header">
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="name-header" xmlns:sec="http://www.w3.org/1999/xhtml">
     <div class="row">
-        <div class="col" th:each="currentUser: ${user}"
-             style="background: black; color: white; padding: 0.5%  2%; font-size: 20px">
-            <span th:text="${currentUser.getEmail()}" style="font-weight: bold;"></span>
-            <span> with roles:</span>
-<!--            <span th:text="${currentUser.getNameRole()}"></span>-->
-            <span th:text="${currentUser.getUsername()}"></span>
+
+
+        <!--        <div class="col" th:each="currentUser: ${user1}"-->
+<!--             style="background: black; color: white; padding: 0.5%  2%; font-size: 20px">-->
+<!--            <span th:text="${currentUser.getEmail()}" style="font-weight: bold;"></span>-->
+<!--            <span> with roles:</span>-->
+<!--&lt;!&ndash;            <span th:text="${currentUser.getNameRole()}"></span>&ndash;&gt;-->
+<!--            <span th:text="${currentUser.getUsername()}"></span>-->
+<!--        </div>-->
+
+
+        <div style="background: grey; color: white; padding: 0.5%  2%; font-size: 20px">
+
+<!--            <a sec:authentication="${principal.username}"></a>-->
+<!--            <td th:text="${authentication.getPrincipal()}"></td>-->
+
         </div>
-
-
 
         <div class="col" style="background: black; color: white; padding: 0.5%  2%;" align="right">
             <a href="/logout" style="text-decoration: none; color: #bcbcbc"> Logout</a>

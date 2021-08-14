@@ -45,17 +45,7 @@ public class UserService  {
         return userRepository.findByUsername(username);
     }
 
-//    public void addRolesToUser(User user, Set<Role> roleView) {
-//        Set<Role> roleList = new HashSet<>();
-//        for (String role : roleView) {
-//            if (role.equals("ROLE_ADMIN")) {
-//                roleList.add(roleRepository.findRoleByName("ROLE_ADMIN"));
-//            } else if (role.equals("ROLE_USER")) {
-//                roleList.add(roleRepository.findRoleByName("ROLE_USER"));
-//            }
-//        }
-//        user.setRoles(roleList);
-//    }
+
 
     public void addRolesToUser(User user, Role roleView) {
         Set<Role> roleList = new HashSet<>();
@@ -69,6 +59,15 @@ public class UserService  {
         user.setRoles(roleList);
     }
 
+    public String getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        return user.getUsername();
+    }
+
+//    public User getOneFromCurrent() {
+//        userRepository.findByUsername()
+//    }
 
 
 }

@@ -94,9 +94,8 @@ public class User implements UserDetails {
 
     public User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        //User user = authentication.getPrincipal();
-        return (User) authentication.getPrincipal();
+        User user = (User) authentication.getPrincipal();
+        return user;
     }
-
 
 }

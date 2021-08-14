@@ -26,4 +26,6 @@ public class UserController {
         model.addAttribute("UserCurrent", user.getCurrentUser());
         return "user-info";
     }
+
+
 }
