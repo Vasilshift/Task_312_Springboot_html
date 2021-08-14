@@ -1,5 +1,6 @@
 package web.controller;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import web.model.Role;
 import web.model.User;
@@ -18,11 +19,13 @@ public class AdminController {
 
     private final UserService userService;
     private final RoleService roleService;
+    private final BCryptPasswordEncoder bcryptpasswordEncoder;
 
     @Autowired
-    public AdminController(UserService userService, RoleService roleService) {
+    public AdminController(UserService userService, RoleService roleService, BCryptPasswordEncoder bcryptpasswordEncoder) {
         this.userService = userService;
         this.roleService = roleService;
+        this.bcryptpasswordEncoder = bcryptpasswordEncoder;
     }
 
     @GetMapping()
@@ -43,10 +46,11 @@ public class AdminController {
     }
 
     @PostMapping("/user-create")
-    public String createUser(@ModelAttribute("user") User user, Model model ) {
-
+    public String createUser(@ModelAttribute("user") User user, String password, Model model ) {
         model.addAttribute("allRoles", roleService.findAllRoles());
+        user.setPassword(bcryptpasswordEncoder.encode(password));
         userService.saveUser(user);
+        System.out.println(password);
         return "redirect:/admin";
     }
 
@@ -74,9 +78,8 @@ public class AdminController {
 
     @PostMapping("/user-update")
     public String updateUser(@ModelAttribute("user") User user, Model model) {
-
-        //user.setRoles(roleService.updateRoles(roleView));
         model.addAttribute("allRoles", roleService.findAllRoles());
+        user.setPassword(bcryptpasswordEncoder.encode(user.getPassword()));
         userService.saveUser(user);
         return "redirect:/admin";
     }
