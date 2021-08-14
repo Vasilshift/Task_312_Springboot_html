@@ -55,7 +55,9 @@ public class AdminController {
     }
 
     @PostMapping("/user-delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id){
+    public String deleteUser(@PathVariable("id") Long id, @ModelAttribute("user") User user, Model model){
+        model.addAttribute("user", user);
+        model.addAttribute("allRoles", roleService.findAllRoles());
         userService.deleteById(id);
         return "redirect:/admin";
     }
@@ -64,22 +66,22 @@ public class AdminController {
     public String deleteUserForm(@PathVariable("id") Long id, Model model) {
         User user = userService.findById(id);
         model.addAttribute("user", user);
+        model.addAttribute("allUsers", roleService.findAllRoles());
         return "user-delete-form";
     }
-
 
     @GetMapping("/user-update/{id}")
     public String updateUserForm(@PathVariable("id") Long id, Model model){
         User user = userService.findById(id);
-        model.addAttribute("allRoles", roleService.findAllRoles());
         model.addAttribute("user", user);
+        model.addAttribute("allRoles", roleService.findAllRoles());
         return "user-update";
     }
 
     @PostMapping("/user-update")
     public String updateUser(@ModelAttribute("user") User user, Model model) {
-        model.addAttribute("allRoles", roleService.findAllRoles());
         user.setPassword(bcryptpasswordEncoder.encode(user.getPassword()));
+        model.addAttribute("allRoles", roleService.findAllRoles());
         userService.saveUser(user);
         return "redirect:/admin";
     }

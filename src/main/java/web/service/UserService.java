@@ -2,6 +2,7 @@ package web.service;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import web.model.Role;
 import web.model.User;
@@ -59,15 +60,14 @@ public class UserService  {
 
     public void addRolesToUser(User user, Role roleView) {
         Set<Role> roleList = new HashSet<>();
-
             if (roleView.equals("ROLE_ADMIN")) {
                 roleList.add(roleRepository.findRoleByName("ROLE_ADMIN"));
             } else if (roleView.equals("ROLE_USER")) {
                 roleList.add(roleRepository.findRoleByName("ROLE_USER"));
             }
-
         user.setRoles(roleList);
     }
+
 
 
 

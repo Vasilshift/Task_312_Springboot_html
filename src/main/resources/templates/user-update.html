@@ -38,10 +38,10 @@
                     <input class="form-control" type="text" name="name" th:field="*{username}" id="name"/>
 
                     <label for="lastname">Enter Last Name: </label>
-                    <input class="form-control" type="text" name="name" th:field="*{lastname}" id="lastname"/>
+                    <input class="form-control" type="text" name="lastname" th:field="*{lastname}" id="lastname"/>
 
                     <label for="age">Enter age: </label>
-                    <input class="form-control" type="text" name="age" th:field="*{age}" id="age"/>
+                    <input class="form-control" type="number" name="age" th:field="*{age}" id="age"/>
 
                     <label for="email">Enter email: </label>
                     <input class="form-control" type="text" name="email" th:field="*{email}" id="email"/>
@@ -50,28 +50,13 @@
                     <input class="form-control" type="text" name="password" id="password">
 
                     <label for="roles">User roles</label>
-                        <select multiple size="2" id="roles" name="roles">
+                    <select multiple size="2" id="roles" name="roles">
                         <option th:each="role : ${allRoles}"
                             th:text="${role.name}"
-                                  th:value="${role.id}">
+                            th:value="${role.id}">
                         </option>
-                        </select>
+                    </select>
 
-
-
-
-<!--                        <label>-->
-<!--                            <input type="checkbox"-->
-<!--                                   name="roleView"-->
-<!--                                   th:value = "ROLE_ADMIN"-->
-<!--                                   th:text="Admin">-->
-<!--                        </label>-->
-<!--                        <label>-->
-<!--                            <input type="checkbox"-->
-<!--                                   name="roleView"-->
-<!--                                   th:value = "ROLE_USER"-->
-<!--                                   th:text="User">-->
-<!--                        </label>-->
                 </div>
             </div>
             <br>

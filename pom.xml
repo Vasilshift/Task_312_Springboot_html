@@ -37,6 +37,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
 <!--		<dependency>-->
 <!--			<groupId>org.projectlombok</groupId>-->
 <!--			<artifactId>lombok</artifactId>-->
@@ -60,8 +61,6 @@
 <!--			<artifactId>jstl</artifactId>-->
 <!--			<version>1.2</version>-->
 <!--		</dependency>-->
-
-
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -95,7 +94,14 @@
             <version>1.18.20</version>
         </dependency>
 
-    </dependencies>
+		<!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5 -->
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+			<version>3.0.4.RELEASE</version>
+		</dependency>
+
+	</dependencies>
 
 	<build>
 		<plugins>
