@@ -2,7 +2,7 @@
 <div th:fragment="name-header">
     <div class="row">
         <div style="background: black; color: white;  font-size: 20px">
-            <span class="username" style="color: white; padding-left: 20px; font-size: 28px" th:text="${#authentication.getPrincipal().getUsername()}"></span>
+            <span class="username" style="color: white; padding-left: 20px; font-size: 28px" th:text="${#authentication.getPrincipal().getEmail()}"></span>
             <span> with roles:</span>
             <th:block th:each="role : ${#authentication.authorities}">
                 <span th:text="${role.getName()}"/>

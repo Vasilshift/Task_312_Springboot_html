@@ -6,13 +6,174 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="/css/styles.css" rel="stylesheet">
     <title>Main page</title>
-
 </head>
 <body>
 
 <div th:insert="blocks/header :: name-header"></div>
-<div th:insert="blocks/body :: name-body"></div>
 
+<div class="container-fluid">
+    <div class="row">
+                <!-- Общий контейнер для табов -->
+                <div class="tabs">
+                    <div class="col-2 left-col">
+                        <div class="row">
+                                    <!--  Контейнер с вкладками   -->
+                                    <ul class="tab-header">
+                                        <li class="tab-header__item js-tab-trigger active" data-tab="1">Admin</li>
+                                        <li class="tab-header__item js-tab-trigger" data-tab="2">User</li>
+                                    </ul>
+                        </div>
+                    </div>
+                    <div class="col-10 left-col">
+                                    <!--  Контейнер с блоками, которые содержат контент вкладок   -->
+                                    <ul class="tab-content">
+                                        <li class="tab-content__item js-tab-content active" data-tab="1">
+
+                                                    <div class="left-col col-10 vh-100">
+                                                        <div class="row container mt-5">
+                                                            <h3>Admin panel</h3>
+                                                            <ul class="nav nav-tabs">
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link active" aria-current="page" href="#">User table</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="/admin/user-create">New user</a>
+
+
+
+
+
+                                                                </li>
+                                                            </ul>
+                                                            <div class="all-users" >
+                                                                <h4>All users</h4>
+                                                            </div>
+                                                            <div class="table-users">
+                                                                <table class="table table-striped">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th scope="col">Id</th>
+                                                                        <th scope="col">username</th>
+                                                                        <th scope="col">lastname</th>
+                                                                        <th scope="col">Age</th>
+                                                                        <th scope="col">Email</th>
+                                                                        <th scope="col">Role</th>
+                                                                        <th scope="col">Edit</th>
+                                                                        <th scope="col">Delete</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <tr th:each="user: ${users}">
+                                                                        <td th:text="${user.getId()}"></td>
+                                                                        <td th:text="${user.getUsername()}"></td>
+                                                                        <td th:text="${user.getLastname()}"></td>
+                                                                        <td th:text="${user.getAge()}"></td>
+                                                                        <td th:text="${user.getEmail()}"></td>
+                                                                        <td>
+                                                                            <th:block th:each="role : ${user.getRoles()}">
+                                                                                <span th:text="${role.name}"/>
+                                                                            </th:block>
+                                                                        </td>
+
+                                                                        <form th:method="GET" th:action="@{/admin/user-update/{id}(id=${user.getId()})}">
+                                                                            <td><input class="form-control edit-user" type="submit" value="Edit" ></td>
+                                                                        </form>
+                                                                        <form th:method="GET" th:action="@{/admin/user-delete/{id}(id=${user.getId()})}">
+                                                                            <td><input class="form-control delete-user" type="submit" value="Delete"></td>
+                                                                        </form>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                        </li>
+                                        <li class="tab-content__item js-tab-content" data-tab="2">
+                                            <div th:insert="blocks/one-user-in-main :: name-user"></div>
+                                        </li>
+                                    </ul>
+                    </div>
+
+                </div>
+
+    </div>
+</div>
+
+
+
+<!--<div class="container-fluid vh-100">-->
+<!--    <div class="row">-->
+<!--        <div class="col-2 vh-100">-->
+<!--            <div class="row mt-5" >-->
+<!--                <input class="form-control admin" type="submit" value="Admin">-->
+<!--                <input class="form-control user" type="submit" value="User">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="left-col col-10 vh-100">-->
+<!--            <div class="row container mt-5">-->
+<!--                <h3>Admin panel</h3>-->
+<!--                <ul class="nav nav-tabs">-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link active" aria-current="page" href="#">User table</a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="/admin/user-create">New user</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--                <div class="all-users" >-->
+<!--                    <h4>All users</h4>-->
+<!--                </div>-->
+<!--                <div class="table-users">-->
+<!--                    <table class="table table-striped">-->
+<!--                        <thead>-->
+<!--                        <tr>-->
+<!--                            <th scope="col">Id</th>-->
+<!--                            <th scope="col">username</th>-->
+<!--                            <th scope="col">lastname</th>-->
+<!--                            <th scope="col">Age</th>-->
+<!--                            <th scope="col">Email</th>-->
+<!--                            <th scope="col">Role</th>-->
+<!--                            <th scope="col">Edit</th>-->
+<!--                            <th scope="col">Delete</th>-->
+<!--                        </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody>-->
+<!--                        <tr th:each="user: ${users}">-->
+<!--                            <td th:text="${user.getId()}"></td>-->
+<!--                            <td th:text="${user.getUsername()}"></td>-->
+<!--                            <td th:text="${user.getLastname()}"></td>-->
+<!--                            <td th:text="${user.getAge()}"></td>-->
+<!--                            <td th:text="${user.getEmail()}"></td>-->
+
+<!--                            &lt;!&ndash;                <td th:text="${user.getNameRole()}"></td>&ndash;&gt;-->
+
+<!--                            <td>-->
+<!--                                <th:block th:each="role : ${user.getRoles()}">-->
+<!--                                    &nbsp;<span th:text="${role.name}"/>-->
+<!--                                </th:block>-->
+<!--                            </td>-->
+
+<!--                            <form th:method="GET" th:action="@{/admin/user-update/{id}(id=${user.getId()})}">-->
+<!--                                <td><input class="form-control edit-user" type="submit" value="Edit" ></td>-->
+<!--                            </form>-->
+<!--                            <form th:method="GET" th:action="@{/admin/user-delete/{id}(id=${user.getId()})}">-->
+<!--                                <td><input class="form-control delete-user" type="submit" value="Delete"></td>-->
+<!--                            </form>-->
+<!--                        </tr>-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--<div th:insert="blocks/body :: name-body"></div>-->
+
+
+<script src="/js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<div th:fragment="name-body">
+    <div class="container-fluid vh-100">
+        <div class="row">
+            <div class="col-2 vh-100">
+                <div class="row mt-5" >
+                    <ul class="tab-header">
+                        <li class="form-control tab-header__item js-tab-trigger" type="submit" value="Admin" data-tab="1">Admin</li>
+                        <li class="form-control tab-header__item js-tab-trigger" type="submit" value="User" data-tab="2">User</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="left-col col-10 vh-100">
+                <div class="row container mt-5 tab-content">
+                    <h3>Admin panel</h3>
+                    <ul class="nav nav-tabs">
+
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">User table</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/user-create">New user</a>
+                        </li>
+
+                    </ul>
+                    <div class="all-users" >
+                        <h4>All users</h4>
+                    </div>
+                    <div class="table-users">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">username</th>
+                                <th scope="col">lastname</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="user: ${users}">
+                                <td th:text="${user.getId()}"></td>
+                                <td th:text="${user.getUsername()}"></td>
+                                <td th:text="${user.getLastname()}"></td>
+                                <td th:text="${user.getAge()}"></td>
+                                <td th:text="${user.getEmail()}"></td>
+
+                                <!--                <td th:text="${user.getNameRole()}"></td>-->
+
+                                <td>
+                                    <th:block th:each="role : ${user.getRoles()}">
+                                        &nbsp;<span th:text="${role.name}"/>
+                                    </th:block>
+                                </td>
+
+                                <form th:method="GET" th:action="@{/admin/user-update/{id}(id=${user.getId()})}">
+                                    <td><input class="form-control edit-user" type="submit" value="Edit" ></td>
+                                </form>
+                                <form th:method="GET" th:action="@{/admin/user-delete/{id}(id=${user.getId()})}">
+                                    <td><input class="form-control delete-user" type="submit" value="Delete"></td>
+                                </form>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</html>
