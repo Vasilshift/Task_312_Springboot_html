@@ -52,7 +52,6 @@
           <label for="password">Enter password: </label>
           <input class="form-control" type="text" name="password" id="password">
 
-          <div>
             <label for="roles">User roles</label>
             <select multiple size="2" id="roles" name="roles">
               <option th:each="role : ${allRoles}"
@@ -60,7 +59,6 @@
                       th:value="${role.id}">
               </option>
             </select>
-          </div>
 
         </div>
       </div>
