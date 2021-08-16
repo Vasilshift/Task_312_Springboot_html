@@ -31,19 +31,20 @@
                     <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Enter password">
                 </div>
 
-                <div>
-                    <label for="roles">User roles</label>
-                    <select multiple size="2" id="roles" name="roles">
+                <div class="form-group">
+                    <div>
+                        <label for="roles">Roles</label>
+                    </div>
+                    <select multiple size="2" id="roles" name="roles" style="width:100%">
                         <option th:each="role : ${allRoles}"
                                 th:text="${role.name}"
                                 th:value="${role.id}">
                         </option>
                     </select>
                 </div>
-
                 <br/>
                 <div class="form-group">
-                    <input type="submit" class="form-control" value="Add new user" style="background-color: #027cff; color: white;">
+                    <input type="submit" class="form-control" value="Add new user" style="background-color: #37ab60; color: white;">
                 </div>
             </form><br>
         </div>

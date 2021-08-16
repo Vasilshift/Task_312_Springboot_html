@@ -15,12 +15,13 @@
 <div th:insert="blocks/body :: name-body"></div>
 
 <div class="update">
+
   <div class="update_body">
     <form th:method="POST" th:action="@{/admin/user-delete/{id}(id=${user.getId()})}" th:object="${user}">
       <div style="border-bottom: 1px solid #dfdfdf">
         <div class="row align-items-start">
           <div class="col" style=" padding: 3%">
-            <h4>Delete user</h4>
+            <h4>Edit user</h4>
           </div>
           <div class="col">
           </div>
@@ -29,47 +30,43 @@
           </div>
         </div>
       </div>
-
       <div class="update-content">
-
         <div class="form-group">
           <label for="id">ID</label>
           <input class="form-control" readonly type="text" name="id" th:field="*{id}" id="id">
 
-          <label for="username">Name: </label>
-          <input class="form-control" readonly type="text" name="username" th:field="*{username}" id="username"/>
+          <label for="name">Enter name: </label>
+          <input class="form-control" type="text" name="name" th:field="*{username}" id="name"/>
 
-          <label for="lastname">Last Name: </label>
-          <input class="form-control" readonly type="text" name="lastname" th:field="*{lastname}" id="lastname"/>
+          <label for="lastname">Enter Last Name: </label>
+          <input class="form-control" type="text" name="lastname" th:field="*{lastname}" id="lastname"/>
 
-          <label for="age">Age: </label>
-          <input class="form-control" readonly type="number" name="age" th:field="*{age}" id="age"/>
+          <label for="age">Enter age: </label>
+          <input class="form-control" type="number" name="age" th:field="*{age}" id="age"/>
 
-          <label for="email">Email: </label>
-          <input class="form-control" readonly type="text" name="email" th:field="*{email}" id="email"/>
+          <label for="email">Enter email: </label>
+          <input class="form-control" type="text" name="email" th:field="*{email}" id="email"/>
 
           <label for="password">Enter password: </label>
-          <input class="form-control" type="text" name="password" id="password">
+          <input class="form-control" type="text" name="password" th:field="*{password}" id="password">
 
-            <label for="roles">User roles</label>
-            <select multiple size="2" id="roles" name="roles">
-              <option th:each="role : ${allRoles}"
-                      th:text="${role.name}"
-                      th:value="${role.id}">
-              </option>
-            </select>
-
+          <label for="roles">User roles</label>
+          <select multiple size="2" id="roles" name="roles">
+            <th:block th:each="role : ${user.getRoles()}">
+              <span th:text="${role.name}"/>
+            </th:block>
+          </select>
         </div>
       </div>
       <br>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a th:href="@{/admin}"><button class="btn btn-secondary me-md-2" type="button">Close</button></a>
-        <button class="btn btn-danger" type="submit">Delete</button>
-      </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <a th:href="@{/admin}"><button class="btn btn-secondary me-md-2" type="button">Close</button></a>
+              <button class="btn btn-danger" type="submit">Delete</button>
+            </div>
     </form>
   </div>
-</div>
 
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
