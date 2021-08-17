@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import web.model.Role;
 import web.model.User;
 import web.service.RoleService;
 import web.service.UserService;
@@ -32,6 +33,17 @@ public class SpringbootdemoApplication {
 
 	@PostConstruct
 	void init(){
+
+		Role roleAdmin = new Role();
+		roleAdmin.setId(1L);
+		roleAdmin.setName("ROLE_ADMIN");
+		roleService.save(roleAdmin);
+
+		Role roleUser = new Role();
+		roleUser.setId(2L);
+		roleUser.setName("ROLE_USER");
+		roleService.save(roleUser);
+
 		User user1 = new User();
 		user1.setUsername("admin");
 		user1.setPassword(bcryptpasswordEncoder.encode("admin"));
