@@ -1,0 +1,150 @@
+input.admin {
+    background-color: #027cff;
+    color: white;
+    text-align: start;
+    border: none;
+}
+
+input:focus.admin {
+    background-color: #027cff;
+    box-shadow: none;
+    color: white;
+    text-align: start;
+    border: none;
+}
+
+input.user {
+    background-color: white;
+    outline: 0;
+    color: #027cff;
+    text-align: start;
+    border: none;
+}
+
+input:focus.user {
+    background-color: white;
+    box-shadow: none;
+    color: #027cff;
+    text-align: start;
+    border: none;
+}
+
+.table-users {
+    background-color: white;
+    border: solid 1px #dfdfdf;
+}
+
+.left-col {
+    background-color: #f8f9fa;
+    float:left;
+}
+
+.all-users {
+    background-color: #f2f2f2;
+    border: solid 1px #dfdfdf;
+}
+
+.edit-user {
+    background-color: #2e65f0;
+    color: white;
+}
+
+.delete-user {
+    background-color: #c42836;
+    color: white;
+}
+
+.form-group {
+    text-align: center;
+    font-weight: bold;
+    /*padding-bottom: 20px;*/
+}
+
+.update {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+}
+
+.update_body {
+    max-width: 50%;
+    max-height: 100%;
+    margin: 2% 30% 10%;
+    background-color: #fff;
+}
+
+.update-content {
+    max-width: 50%;
+    max-height: 100%;
+    margin: 5% 10% 0%;
+}
+
+.btn-close {
+    top: 1px;
+    right: 1px;
+}
+.gap-2{
+    border-top: 1px solid #dfdfdf;
+    padding: 3%;
+
+}
+
+/*for tabs in mainbody*/
+
+.tab-header {
+    list-style: none;
+    padding-left: 0;
+    /*display: flex;*/
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+}
+
+/* Стили для вкладки */
+.tab-header__item {
+    padding: 10px 30px;
+    margin-right: 1px;
+    cursor: pointer;
+    /*border: 1px solid #ddd;*/
+    border-bottom: none;
+}
+
+/* Стили для активной вкладки */
+.tab-header__item.active {
+    color: white;
+    position: relative;
+    top: 1px;
+    background-color: #2e65f0;
+    /*border-color: red;*/
+
+}
+
+/* Стиль для списка контейнеров с содержимым вкладок */
+.tab-content {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Стили для контейнера с содержимым вкладки */
+.tab-content__item {
+    display: none;
+    padding: 5px;
+    /*border: 1px solid red;*/
+}
+
+/* Стили для активного контейнера вкладки */
+.tab-content__item.active {
+    display: block;
+}
+
+.nav-link1 {
+    display: block;
+    padding: 0;
+    color: #0d6efd;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}

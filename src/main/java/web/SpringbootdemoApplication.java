@@ -50,5 +50,4 @@ public class SpringbootdemoApplication {
 		user2.setRoles(Collections.singleton(roleService.findRoleByName("ROLE_USER")));
 		userService.saveUser(user2);
 	}
-
 }
