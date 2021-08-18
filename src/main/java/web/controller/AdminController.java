@@ -45,8 +45,11 @@ public class AdminController {
     }
 
     @PostMapping("/user-create")
-    public String createUser(@ModelAttribute("user") User user, String password, Model model) {
+    public String createUser(@ModelAttribute("user") User user, String password, Model model ) {
+        model.addAttribute("allRoles", roleService.findAllRoles());
+        user.setPassword(bcryptpasswordEncoder.encode(password));
         userService.saveUser(user);
+        System.out.println(password);
         return "redirect:/admin";
     }
 
