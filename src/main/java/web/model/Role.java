@@ -1,5 +1,7 @@
 package web.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +25,7 @@ public class Role implements GrantedAuthority{
     @Column(name = "role")
     private String name;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     private Set<User> users;
 

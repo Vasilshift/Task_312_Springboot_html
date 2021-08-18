@@ -40,7 +40,6 @@ public class RoleService {
         return roleRepository.findRoleByName(name);
     }
 
-
     public void save(Role roleAdmin) {
         roleRepository.save(roleAdmin);
     }

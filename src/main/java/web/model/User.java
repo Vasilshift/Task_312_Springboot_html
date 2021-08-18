@@ -1,5 +1,6 @@
 package web.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -46,6 +47,7 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
+    @JsonManagedReference
     @Column(name = "role")
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
