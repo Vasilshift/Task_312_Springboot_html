@@ -1,5 +1,8 @@
 package web.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,10 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import web.service.UserService;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.Collection;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Getter
@@ -46,7 +46,11 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "role")
+//    @JsonIdentityInfo(
+//            generator = ObjectIdGenerators.PropertyGenerator.class,
+//            property = "id"
+//    )
+    //@Column(name = "role")
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 

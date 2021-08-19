@@ -32,15 +32,18 @@ public class RoleService {
         return roleList;
     }
 
+    @Transactional
     public List<Role> findAllRoles() {
         return roleRepository.findAll();
     }
 
+    @Transactional
     public Role findRoleByName(String name) {
         return roleRepository.findRoleByName(name);
     }
 
 
+    @Transactional
     public void save(Role roleAdmin) {
         roleRepository.save(roleAdmin);
     }

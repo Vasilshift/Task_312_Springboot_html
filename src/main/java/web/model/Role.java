@@ -1,5 +1,8 @@
 package web.model;
 
+//import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,13 +26,20 @@ public class Role implements GrantedAuthority{
     @Column(name = "role")
     private String name;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
-    private Set<User> users;
+    //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    //@JsonIgnoreProperties(allowSetters = true)
+    //@Transient
 
-    public Role(Long id, String name, Set<User> users) {
+    //@JsonProperty(access = Access.WRITE_ONLY)
+    //@JsonIgnore
+//    @Transient
+//    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
+//    private Set<User> users;
+
+    public Role(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.users = users;
+
     }
 
     @Override
@@ -41,4 +51,14 @@ public class Role implements GrantedAuthority{
     public String getAuthority() {
         return name;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
 }
