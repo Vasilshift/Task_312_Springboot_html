@@ -50,9 +50,9 @@ public class AdminController {
     }
 
     @DeleteMapping("/user-delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id, @ModelAttribute("user") User user, Model model){
-        model.addAttribute("user", user);
-        model.addAttribute("allRoles", roleService.findAllRoles());
+    public String deleteUser(@PathVariable("id") Long id){
+//        model.addAttribute("user", user);
+//        model.addAttribute("allRoles", roleService.findAllRoles());
         userService.deleteById(id);
         return "redirect:/admin";
     }
