@@ -17,7 +17,7 @@
 <div class="update">
 
   <div class="update_body">
-    <form th:method="POST" th:action="@{/admin/user-delete/{id}(id=${user.getId()})}" th:object="${user}">
+    <form th:method="DELETE" th:action="@{/admin/user-delete/{id}(id=${user.getId()})}" th:object="${user}">
       <div style="border-bottom: 1px solid #dfdfdf">
         <div class="row align-items-start">
           <div class="col" style=" padding: 3%">
