@@ -16,7 +16,7 @@
 <div class="update">
 
     <div class="update_body">
-        <form th:method="POST" th:action="@{/admin/user-update}" th:object="${user}">
+        <form th:method="PUT" th:action="@{/admin/user-update}" th:object="${user}">
             <div style="border-bottom: 1px solid #dfdfdf">
                 <div class="row align-items-start">
                     <div class="col" style=" padding: 3%">

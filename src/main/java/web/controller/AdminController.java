@@ -71,7 +71,7 @@ public class AdminController {
         return "user-update";
     }
 
-    @PostMapping("/user-update")
+    @PutMapping("/user-update")
     public String updateUser(@ModelAttribute("user") User user, Model model) {
         user.setPassword(bcryptpasswordEncoder.encode(user.getPassword()));
         model.addAttribute("allRoles", roleService.findAllRoles());
