@@ -53,6 +53,7 @@ public class MyRestController {
         try
         {
             mapper.writeValue(new File("c://temp/user.json"), User.class);
+
         } catch (JsonGenerationException e)
         {
             e.printStackTrace();

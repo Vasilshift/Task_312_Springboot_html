@@ -46,11 +46,9 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-//    @JsonIdentityInfo(
-//            generator = ObjectIdGenerators.PropertyGenerator.class,
-//            property = "id"
-//    )
-    //@Column(name = "role")
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 

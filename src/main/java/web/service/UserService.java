@@ -3,6 +3,7 @@ package web.service;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.Role;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class UserService  {
+public class UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
