@@ -1,5 +1,5 @@
-//package web.service;
-//
-//public interface DBInitial {
-//    void init();
-//}
+package web.service;
+
+public interface DBInitial {
+    void init();
+}
