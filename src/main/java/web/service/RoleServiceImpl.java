@@ -34,16 +34,19 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional
     public List<Role> findAllRoles() {
         return roleRepository.findAll();
     }
 
     @Override
+    @Transactional
     public Role findRoleByName(String name) {
         return roleRepository.findRoleByName(name);
     }
 
     @Override
+    @Transactional
     public void save(Role roleAdmin) {
         roleRepository.save(roleAdmin);
     }
