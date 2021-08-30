@@ -1,6 +1,5 @@
 package web.service;
 
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import web.model.User;
 
 import java.util.List;
