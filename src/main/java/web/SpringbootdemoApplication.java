@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import web.model.Role;
 import web.model.User;
-import web.service.RoleService;
-import web.service.UserService;
+import web.service.RoleServiceImpl;
+import web.service.UserServiceImpl;
 
 import javax.annotation.PostConstruct;
 import java.util.Collections;
@@ -19,12 +19,12 @@ public class SpringbootdemoApplication {
 		SpringApplication.run(SpringbootdemoApplication.class, args);
 	}
 
-	private UserService userService;
-	private RoleService roleService;
+	private UserServiceImpl userService;
+	private RoleServiceImpl roleService;
 	private BCryptPasswordEncoder bcryptpasswordEncoder;
 
 	@Autowired
-	public SpringbootdemoApplication(UserService userService, RoleService roleService, BCryptPasswordEncoder bcryptpasswordEncoder) {
+	public SpringbootdemoApplication(UserServiceImpl userService, RoleServiceImpl roleService, BCryptPasswordEncoder bcryptpasswordEncoder) {
 		this.userService = userService;
 		this.roleService = roleService;
 		this.bcryptpasswordEncoder = bcryptpasswordEncoder;

@@ -4,8 +4,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import web.model.Role;
 import web.model.User;
-import web.service.RoleService;
-import web.service.UserService;
+import web.service.RoleServiceImpl;
+import web.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +16,12 @@ import java.util.*;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private final UserService userService;
-    private final RoleService roleService;
+    private final UserServiceImpl userService;
+    private final RoleServiceImpl roleService;
     private final BCryptPasswordEncoder bcryptpasswordEncoder;
 
     @Autowired
-    public AdminController(UserService userService, RoleService roleService, BCryptPasswordEncoder bcryptpasswordEncoder) {
+    public AdminController(UserServiceImpl userService, RoleServiceImpl roleService, BCryptPasswordEncoder bcryptpasswordEncoder) {
         this.userService = userService;
         this.roleService = roleService;
         this.bcryptpasswordEncoder = bcryptpasswordEncoder;

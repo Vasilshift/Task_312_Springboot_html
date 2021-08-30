@@ -9,11 +9,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Task_312_Springboot_html" />
         <module name="Task_312_Springboot_html_V2" />
+        <module name="Task_312_Springboot_and_313" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Task_312_Springboot_and_313" options="-parameters" />
       <module name="Task_312_Springboot_html" options="-parameters" />
       <module name="Task_312_Springboot_html_V2" options="-parameters" />
     </option>
