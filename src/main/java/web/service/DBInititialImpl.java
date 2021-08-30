@@ -12,9 +12,9 @@ import java.util.Collections;
 @Component
 public class DBInititialImpl implements DBInitial {
 
-    private UserServiceImpl userService;
-    private RoleServiceImpl roleService;
-    private BCryptPasswordEncoder bcryptpasswordEncoder;
+    private final UserServiceImpl userService;
+    private final RoleServiceImpl roleService;
+    private final BCryptPasswordEncoder bcryptpasswordEncoder;
 
     @Autowired
     public DBInititialImpl(UserServiceImpl userService, RoleServiceImpl roleService, BCryptPasswordEncoder bcryptpasswordEncoder) {
