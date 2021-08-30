@@ -1,12 +1,10 @@
 package web.service;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import web.model.Role;
+
 import web.model.User;
-import web.repository.RoleRepository;
+
 import web.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +16,12 @@ import java.util.Set;
 public class UserService  {
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
+
 
     @Autowired
-    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
+
     }
 
     public User findById(Long id){
